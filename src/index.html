@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Food</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/index.css">
+  </head>
+  <body>
+    <div class="modal">
+      <div class="header">
+        <h1 class="title">Build<span id="buildNum">21</span></h1>
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="content">
+        <h2 class="subtitle">Info</h2>
+        <div class="info">
+          <ul>
+            <li>
+              <div id="date">Monday, February 11th</div>
+              <div id="time">6:00pm - 9:00pm</div>
+            </li>
+            <li>
+              <div id="name">Adam Mikacich</div>
+              <div id="food">Italian</div>
+            </li>
+            <li>
+              <div><span id="numAttendees">20</span> Total Attendees</div>
+              <div><span id="numGlutenFree">0</span> are Gluten Free</div>
+              <div><span id="numVegetarian">2</span> are Vegetarian</div>
+            </li>
+          </ul>
+        </div>
+        <div class="attendees hide" style="display: none">
+          <h2 class="subtitle">Attendees</h2>
+          <ul id="attendees"></ul>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn" id="view">View List</button>
+        <button class="btn" id="register">Register</button>
+      </div>
+    </div>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
