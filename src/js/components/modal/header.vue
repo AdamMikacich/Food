@@ -1,12 +1,18 @@
 <template>
   <div class="header">
     <h1 class="title">Build<span id="buildNum">21</span></h1>
-    <i class="fas fa-times"></i>
+    <i class="fas fa-times" @click="modal" style="cursor: pointer;"></i>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    modal: function() {
+      this.$store.commit('modal');
+    }
+  }
+};
 </script>
 
 <style>

@@ -6,6 +6,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   strict: true,
   state: {
+    view: true,
     modal: {
       view: false,
       registered: false,
@@ -13,6 +14,9 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
+    modal: function(state) {
+      state.view = !state.view;
+    },
     changeView: function(state) {
       state.modal.view = !state.modal.view;
     },

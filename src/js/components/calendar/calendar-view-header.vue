@@ -1,0 +1,74 @@
+<template>
+	<div class="calendarHeader">
+		<div class="calendarHeaderSelect">
+			<button
+				:disabled="!headerProps.previousPeriod"
+        class="btn"
+				@click.prevent="onInput(headerProps.previousPeriod)"
+			>
+				&lt;
+			</button>
+			<button
+        class="btn"
+				@click.prevent="onInput(headerProps.currentPeriod)"
+			>
+				{{ headerProps.currentPeriodLabel }}
+			</button>
+			<button
+				:disabled="!headerProps.nextPeriod"
+        class="btn"
+				@click.prevent="onInput(headerProps.nextPeriod)"
+			>
+				&gt;
+			</button>
+		</div>
+		<div class="calendarHeaderDate">{{ headerProps.periodLabel }}</div>
+	</div>
+</template>
+
+<script>
+export default {
+	name: "CalendarViewHeader",
+	props: {
+		headerProps: {
+			type: Object,
+			required: true,
+		},
+	},
+	methods: {
+		onInput(d) {
+			this.$emit("input", d)
+		},
+	},
+}
+</script>
+
+<style>
+.calendarHeader {
+  height: 50px;
+  background-color: #3183C8;
+}
+
+.calendarHeaderSelect {
+  margin: 10px;
+  position: absolute;
+}
+
+.calendarHeaderSelect button {
+  height: 30px;
+  padding: 0 10px;
+  font-weight: normal;
+  background-color: #63A2D7;
+  border: none;
+  color: #EFF8FF;
+}
+
+.calendarHeaderDate {
+  margin: 15px 0;
+  position: absolute;
+  height: 20px;
+  right: 10px;
+  color: white;
+  line-height: 20px !important;
+}
+</style>

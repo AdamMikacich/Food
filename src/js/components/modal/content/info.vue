@@ -33,7 +33,7 @@
       <li v-else>
         <i class="fas fa-times status failure"></i>
         <div>
-          <div>Not <span>Registered</span></div>
+          <div><span>Not</span> Registered</div>
         </div>
       </li>
     </ul>
@@ -80,5 +80,6 @@ export default {};
 
 .info li span {
   color: #5F6B7A;
+  font-weight: bold;
 }
 </style>

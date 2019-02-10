@@ -23,21 +23,6 @@ export default {
   border-bottom: solid 1px #CFD6DE;
 }
 
-.btn {
-  cursor: pointer;
-  height: 50px;
-  border-radius: 10px;
-  outline: none;
-  border: none;
-  color: #5F6B7A;
-  font-weight: bold;
-  background-color: #FFFFFF;
-  border: solid 1px #CFD6DE;
-  font-family: 'Roboto', sans-serif;
-  transition: all 0.1s;
-  font-size: 14px;
-}
-
 .actions > .btn {
   width: calc(50% - 30px);
   position: absolute;
