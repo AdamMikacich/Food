@@ -17,6 +17,12 @@ const store = new Vuex.Store({
     modal: function(state) {
       state.view = !state.view;
     },
+    assign: function(state, value) {
+      state[value.target][value.key] = value.value;
+    },
+    invert: function(state, value) {
+      state[value.target][value.key] = !state[value.target][value.key];
+    },
     changeView: function(state) {
       state.modal.view = !state.modal.view;
     },

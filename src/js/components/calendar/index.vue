@@ -1,7 +1,8 @@
 <template>
-  <div class="calendar">
+  <div class="calendar" :class="{animate: $store.state.view}">
 		<calendar-view
 			:show-date="showDate"
+      :events="events"
 			class="theme-default holiday-us-traditional holiday-us-official"
       @click-date="clickDate"
       @click-event="clickEvent"
@@ -26,7 +27,39 @@ import 'vue-simple-calendar/static/css/default.css';
 export default {
   data: function() {
     return {
-      showDate: new Date()
+      showDate: new Date(),
+      events: [
+        {
+          id: 1,
+          startDate: (new Date()).setDate((new Date()).getDate() - 1),
+          title: 'Build 21',
+          classes: 'past'
+        },
+        {
+          id: 2,
+          startDate: (new Date()).setDate((new Date()).getDate()),
+          title: 'Build 22',
+          classes: 'locked'
+        },
+        {
+          id: 3,
+          startDate: (new Date()).setDate((new Date()).getDate() + 1),
+          title: 'Build 23',
+          classes: 'normal'
+        },
+        {
+          id: 4,
+          startDate: (new Date()).setDate((new Date()).getDate() + 3),
+          title: 'Build 24',
+          classes: 'normal'
+        },
+        {
+          id: 5,
+          startDate: (new Date()).setDate((new Date()).getDate() + 5),
+          title: 'Build 25',
+          classes: 'signedup'
+        },
+      ]
     }
   },
   components: {
@@ -37,10 +70,9 @@ export default {
     setShowDate: function(date) {
       this.showDate = date;
     },
-    clickDate: function(date) {
-      this.$store.commit('modal');
-    },
+    clickDate: function(date) {},
     clickEvent: function(event) {
+      this.$store.commit('modal');
     },
     convert: function(props) {
       props.previousYear = false;
@@ -59,8 +91,8 @@ export default {
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
+  transition: all 0.5s;
 }
-
 
 @media only screen and (min-width: 840px) {
   .calendar {

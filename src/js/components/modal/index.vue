@@ -1,5 +1,8 @@
 <template>
-  <div class="modal">
+  <div
+    class="modal"
+    :class="{animate: !$store.state.view}"
+  >
     <Header></Header>
     <Content></Content>
     <Actions></Actions>
@@ -21,21 +24,6 @@ export default {
 </script>
 
 <style>
-.btn {
-  cursor: pointer;
-  height: 50px;
-  border-radius: 10px;
-  outline: none;
-  border: none;
-  color: #5F6B7A;
-  font-weight: bold;
-  background-color: #FFFFFF;
-  border: solid 1px #CFD6DE;
-  font-family: 'Roboto', sans-serif;
-  transition: all 0.1s;
-  font-size: 14px;
-}
-
 .modal {
   position: absolute;
   width: calc(100vw - 40px);
@@ -44,6 +32,7 @@ export default {
   background-color: #F5F7FA;
   overflow: hidden;
   z-index: 10;
+  transition: all 0.5s;
 }
 
 @media only screen and (min-width: 540px) {

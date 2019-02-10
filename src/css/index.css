@@ -17,8 +17,3 @@
 ::-webkit-scrollbar-thumb {
   background: #8895A7;
 }
-
-.hide {
-  opacity: 0;
-  transition: opacity 0.3s;
-}
