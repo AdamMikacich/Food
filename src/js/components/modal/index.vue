@@ -46,13 +46,13 @@ export default {
   z-index: 10;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 540px) {
   .modal {
     width: 500px;
   }
 }
 
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 240px) {
   .modal {
     width: 200px;
   }
