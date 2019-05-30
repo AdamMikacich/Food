@@ -37,11 +37,15 @@ const store = new Vuex.Store({
 
 const lorem = 'Bacon ipsum dolor amet sausage pork pork belly, drumstick flank ham biltong picanha landjaeger prosciutto jowl andouille pork chop kielbasa. Hamburger tail pork belly ground round ribeye pig shankle tenderloin chicken tri-tip burgdoggen meatball. Shoulder meatloaf bacon andouille swine, rump hamburger chuck cow bresaola. Landjaeger burgdoggen andouille jowl beef ribs. Ham hock pork flank tongue biltong turducken fatback.'.split('.').join();
 
+function randomBoolean() {
+  return Math.random() < 0.2;
+}
+
 for (let name of lorem.split(' ')) {
   store.commit('addAttendee', {
     name: name,
-    gf: false,
-    v: false
+    gf: randomBoolean(),
+    v: randomBoolean()
   });
 }
 
