@@ -26,7 +26,7 @@ export default {};
 }
 
 span.blue {
-  color: #40739e;
+  color: #56a7ff;
 }
 
 span.green {

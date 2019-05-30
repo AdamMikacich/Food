@@ -46,7 +46,7 @@ export default {
 <style>
 .calendarHeader {
   height: 50px;
-  background-color: #3183C8;
+  background-color: #007bff;
 }
 
 .calendarHeaderSelect {
@@ -58,7 +58,7 @@ export default {
   height: 30px;
   padding: 0 10px;
   font-weight: normal;
-  background-color: #63A2D7;
+  background-color: #56a7ff;
   border: none;
   color: #EFF8FF;
 }

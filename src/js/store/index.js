@@ -32,6 +32,22 @@ const store = new Vuex.Store({
     addAttendee: function(state, value) {
       state.modal.attendees.push(value);
     }
+  },
+  getters: {
+    countGF() {
+      let count = 0;
+      for (const attendee of store.state.modal.attendees) {
+        if (attendee.gf) count++;
+      }
+      return count;
+    },
+    countV() {
+      let count = 0;
+      for (const attendee of store.state.modal.attendees) {
+        if (attendee.v) count++;
+      }
+      return count;
+    }
   }
 });
 

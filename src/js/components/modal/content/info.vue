@@ -19,9 +19,9 @@
       <li>
         <i class="fas fa-user-circle"></i>
         <div>
-          <div><span>20</span> Total Attendees</div>
-          <div><span>0</span> are Gluten Free</div>
-          <div><span>2</span> are Vegetarian</div>
+          <div><span>{{ $store.state.modal.attendees.length }}</span> Total Attendees</div>
+          <div><span>{{ $store.getters.countGF }}</span> are Gluten Free</div>
+          <div><span>{{ $store.getters.countV }}</span> are Vegetarian</div>
         </div>
       </li>
       <li v-if="$store.state.modal.registered === true">

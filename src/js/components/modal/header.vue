@@ -20,7 +20,7 @@ export default {
 .header {
   width: 100%;
   height: 100px;
-  background-color: #3183C8;
+  background-color: #007bff;
 }
 
 .title {
