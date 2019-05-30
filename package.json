@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AdamMikacich/Vue-Parcel.git"
+    "url": "git+https://github.com/AdamMikacich/Food.git"
   },
   "author": "Adam Mikacich",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AdamMikacich/Vue-Parcel/issues"
+    "url": "https://github.com/AdamMikacich/Food/issues"
   },
-  "homepage": "https://github.com/AdamMikacich/Vue-Parcel#readme",
+  "homepage": "https://github.com/AdamMikacich/Food#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "vue": "^2.6.4",
