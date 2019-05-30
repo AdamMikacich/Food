@@ -1,7 +1,7 @@
 {
-  "name": "vue-parcel",
+  "name": "food",
   "version": "1.0.0",
-  "description": "A Vue boilerplate using the Parcel bundler.",
+  "description": "An online tool to signup for food at Team 254",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
