@@ -1,16 +1,21 @@
 <template>
   <div class="app">
-    <Calendar></Calendar>
-    <Modal></Modal>
+    <Nav></Nav>
+    <div class="center">
+      <Calendar></Calendar>
+      <Modal></Modal>
+    </div>
   </div>
 </template>
 
 <script>
+import Nav from './components/nav/index.vue';
 import Calendar from './components/calendar/index.vue';
 import Modal from './components/modal/index.vue';
 
 export default {
   components: {
+    Nav,
     Calendar,
     Modal
   }
@@ -36,6 +41,11 @@ ul {
 .app {
   height: 100vh;
   width: 100vw;
+}
+
+.center {
+  height: calc(100vh - 60px);
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,7 +54,7 @@ ul {
 .btn {
   cursor: pointer;
   height: 50px;
-  border-radius: 10px;
+  border-radius: 5px;
   outline: none;
   border: none;
   color: #5F6B7A;

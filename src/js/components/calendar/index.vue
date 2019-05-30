@@ -22,7 +22,7 @@ import Vue from 'vue/dist/vue.js';
 import {CalendarView} from 'vue-simple-calendar';
 import CalendarViewHeader from './calendar-view-header';
 import 'vue-simple-calendar/static/css/default.css';
-// import 'vue-simple-calendar/static/css/holidays-us.css';
+import 'vue-simple-calendar/static/css/holidays-us.css';
 
 export default {
   data: function() {
@@ -87,7 +87,7 @@ export default {
 .calendar {
   position: absolute;
   width: calc(100vw - 40px);
-  height: calc(100vh - 40px);
+  height: calc(100vh - 100px);
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;

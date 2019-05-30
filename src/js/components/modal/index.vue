@@ -27,7 +27,7 @@ export default {
 .modal {
   position: absolute;
   width: calc(100vw - 40px);
-  height: calc(100vh - 40px);
+  height: calc(100vh - 100px);
   border-radius: 10px;
   background-color: #F5F7FA;
   overflow: hidden;
