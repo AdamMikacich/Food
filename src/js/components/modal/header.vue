@@ -1,15 +1,15 @@
 <template>
   <div class="header">
     <h1 class="title">Build<span id="buildNum">{{ $store.getters.currentEvent.buildNum }}</span></h1>
-    <i class="fas fa-times" @click="modal" style="cursor: pointer;"></i>
+    <i class="fas fa-times" @click="modalActive" style="cursor: pointer;"></i>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    modal: function() {
-      this.$store.commit('modal');
+    modalActive: function() {
+      this.$store.commit('modalActive');
     }
   }
 };

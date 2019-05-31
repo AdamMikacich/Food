@@ -1,7 +1,7 @@
 <template>
   <div
     class="modal"
-    :class="{animate: !$store.state.view}"
+    :class="{animate: !$store.state.modalActive}"
   >
     <div v-if="$store.state.selectedEvent != null">
       <Header></Header>

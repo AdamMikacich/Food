@@ -6,20 +6,18 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   strict: true,
   state: {
-    view: false,
-    modal: {
-      view: false
-    },
+    modalActive: false,
+    modalListActive: false,
     selectedEvent: null,
     events: []
   },
   mutations: {
-    modal: function(state, value) {
+    modalActive: function(state, value) {
       if (value) state.selectedEvent = value;
-      state.view = !state.view;
+      state.modalActive = !state.modalActive;
     },
-    changeView: function(state) {
-      state.modal.view = !state.modal.view;
+    modalListActive: function(state) {
+      state.modalListActive = !state.modalListActive;
     },
     changeRegister: function(state) {
       if (state.selectedEvent == null) return;

@@ -1,7 +1,7 @@
 <template>
   <div class="content">
-    <Info v-if="$store.state.modal.view === false"></Info>
-    <List v-if="$store.state.modal.view === true"></List>
+    <Info v-if="$store.state.modalListActive === false"></Info>
+    <List v-if="$store.state.modalListActive === true"></List>
   </div>
 </template>
 
