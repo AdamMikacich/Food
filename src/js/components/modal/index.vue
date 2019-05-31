@@ -3,9 +3,11 @@
     class="modal"
     :class="{animate: !$store.state.view}"
   >
-    <Header></Header>
-    <Content></Content>
-    <Actions></Actions>
+    <div v-if="$store.state.selectedEvent != null">
+      <Header></Header>
+      <Content></Content>
+      <Actions></Actions>
+    </div>
   </div>
 </template>
 

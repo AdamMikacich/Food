@@ -2,7 +2,7 @@
   <div class="list">
     <h2 class="subtitle">Attendees</h2>
     <ul id="attendees">
-      <li v-for="(attendee, index) in $store.state.modal.attendees" :key="'attendee' + index">
+      <li v-for="(attendee, index) in $store.getters.currentEvent.attendees" :key="'attendee' + index">
         {{ attendee.name }}
         <span class="blue">
           {{ attendee.gf ? '(Gluten Free)' : '' }}

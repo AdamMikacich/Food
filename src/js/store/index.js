@@ -6,63 +6,105 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   strict: true,
   state: {
-    view: true,
+    view: false,
     modal: {
-      view: false,
-      registered: false,
-      attendees: []
-    }
+      view: false
+    },
+    selectedEvent: null,
+    events: []
   },
   mutations: {
-    modal: function(state) {
+    modal: function(state, value) {
+      if (value) state.selectedEvent = value;
       state.view = !state.view;
-    },
-    assign: function(state, value) {
-      state[value.target][value.key] = value.value;
-    },
-    invert: function(state, value) {
-      state[value.target][value.key] = !state[value.target][value.key];
     },
     changeView: function(state) {
       state.modal.view = !state.modal.view;
     },
     changeRegister: function(state) {
-      state.modal.registered = !state.modal.registered;
+      if (state.selectedEvent == null) return;
+      const registered = state.events[state.selectedEvent].registered;
+      const classes = state.events[state.selectedEvent].classes;
+
+      const index = classes.indexOf(registered ? 'registered' : 'unregistered');
+      if (index !== -1) classes.splice(index, 1);
+      classes.push(!registered ? 'registered' : 'unregistered');
+
+      state.events[state.selectedEvent].registered = !registered;
+      
     },
-    addAttendee: function(state, value) {
-      state.modal.attendees.push(value);
+    addEvent: function(state, value) {
+      value.id = state.events.length; // Add unique ID for event (events will not be removed)
+      value.classes = []; // Add classes key
+      const difference = Math.round(((value.startDate - new Date()) / (1000 * 60 * 60 * 24))); // Find difference in days from today
+      if (difference < 3) value.classes.push('locked'); // If the date is within two days, lock the event
+      if (difference < 0) value.classes.push('over'); // If the event has passed, signify it's over
+      value.classes.push(value.registered ? 'registered' : 'unregistered'); // Signify whether the user is registered or not
+      state.events.push(value); // Add the event to the state
     }
   },
   getters: {
     countGF() {
       let count = 0;
-      for (const attendee of store.state.modal.attendees) {
+      for (const attendee of store.getters.currentEvent.attendees) {
         if (attendee.gf) count++;
       }
-      return count;
+      return count; // The number of gluten free signups in the currently opened event visibly in the modal
     },
     countV() {
       let count = 0;
-      for (const attendee of store.state.modal.attendees) {
+      for (const attendee of store.getters.currentEvent.attendees) {
         if (attendee.v) count++;
       }
-      return count;
+      return count; // The number of vegetarian signups in the currently opened event visibly in the modal
+    },
+    currentEvent() {
+      if (store.state.selectedEvent == null) return null;
+      return store.state.events[store.state.selectedEvent];
     }
   }
 });
 
-const lorem = 'Bacon ipsum dolor amet sausage pork pork belly, drumstick flank ham biltong picanha landjaeger prosciutto jowl andouille pork chop kielbasa. Hamburger tail pork belly ground round ribeye pig shankle tenderloin chicken tri-tip burgdoggen meatball. Shoulder meatloaf bacon andouille swine, rump hamburger chuck cow bresaola. Landjaeger burgdoggen andouille jowl beef ribs. Ham hock pork flank tongue biltong turducken fatback.'.split('.').join();
-
-function randomBoolean() {
-  return Math.random() < 0.2;
-}
-
-for (let name of lorem.split(' ')) {
-  store.commit('addAttendee', {
-    name: name,
-    gf: randomBoolean(),
-    v: randomBoolean()
-  });
-}
-
 export default store;
+
+// The following code creates dummy data for this demo
+
+function generateDummyData() {
+  // Randomly return true or false, but heavily biased towards returning false
+  function randomBoolean() {
+    return Math.random() < 0.3;
+  }
+
+  // Placeholder will be split into names based on spaces
+  const placeholder = 'Bacon ipsum dolor amet sausage pork pork belly, drumstick flank ham biltong picanha landjaeger prosciutto jowl andouille pork chop kielbasa. Hamburger tail pork belly ground round ribeye pig shankle tenderloin chicken tri-tip burgdoggen meatball. Shoulder meatloaf bacon andouille swine, rump hamburger chuck cow bresaola. Landjaeger burgdoggen andouille jowl beef ribs. Ham hock pork flank tongue biltong turducken fatback.'.split('.').join();
+
+  // Fill the attendees with names and randomly assign people to be either gluten free, vegetarian, neither, or both
+  const attendees = [];
+  for (let name of placeholder.split(' ')) {
+    attendees.push({
+      name: name,
+      gf: randomBoolean(),
+      v: randomBoolean()
+    });
+  }
+
+  // Randomly create events between 30 days ago and 30 days into the future
+  let nextBuildID = 1;
+  for (let i = -30; i < 30; i++) {
+    if (randomBoolean()) { // Randomly choose whether or not to create an event today
+      store.commit('addEvent', {
+        startDate: (new Date()).setDate((new Date()).getDate() + i),
+        title: `Build ${nextBuildID}`,
+        buildNum: nextBuildID,
+        registered: randomBoolean(),
+        attendees: attendees,
+        time: '6:00pm - 9:00pm',
+        provider: 'Adam Mikacich',
+        type: 'Italian'
+      });
+      nextBuildID++;
+    }
+  }
+}
+
+generateDummyData();

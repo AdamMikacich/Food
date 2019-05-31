@@ -5,26 +5,26 @@
       <li>
         <i class="fas fa-clock"></i>
         <div>
-          <div>Monday, February 11th</div>
-          <div>6:00pm - 9:00pm</div>
+          <div>{{ (new Date($store.getters.currentEvent.startDate)).toDateString() }}</div>
+          <div>{{ $store.getters.currentEvent.time }}</div>
         </div>
       </li>
       <li>
         <i class="fas fa-utensils"></i>
         <div>
-          <div>Adam Mikacich</div>
-          <div>Italian</div>
+          <div>{{ $store.getters.currentEvent.provider }}</div>
+          <div>{{ $store.getters.currentEvent.type }}</div>
         </div>
       </li>
       <li>
         <i class="fas fa-user-circle"></i>
         <div>
-          <div><span>{{ $store.state.modal.attendees.length }}</span> Total Attendees</div>
+          <div><span>{{ $store.getters.currentEvent.attendees.length }}</span> Total Attendees</div>
           <div><span>{{ $store.getters.countGF }}</span> are Gluten Free</div>
           <div><span>{{ $store.getters.countV }}</span> are Vegetarian</div>
         </div>
       </li>
-      <li v-if="$store.state.modal.registered === true">
+      <li v-if="$store.getters.currentEvent.registered === true">
         <i class="fas fa-check status success"></i>
         <div>
           <div><span>Registered</span> Successfully</div>

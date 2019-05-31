@@ -1,7 +1,7 @@
 <template>
   <div class="actions">
     <button class="btn" id="view" @click="view">{{ $store.state.modal.view ? 'View Info' : 'View List'}}</button>
-    <button class="btn" id="register" @click="register">{{ $store.state.modal.registered ? 'Deregister' : 'Register'}}</button>
+    <button class="btn" id="register" @click="register">{{ $store.getters.currentEvent.registered ? 'Deregister' : 'Register'}}</button>
   </div>
 </template>
 

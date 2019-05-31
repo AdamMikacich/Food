@@ -21,50 +21,21 @@ import Vue from 'vue/dist/vue.js';
 
 import {CalendarView} from 'vue-simple-calendar';
 import CalendarViewHeader from './calendar-view-header';
-import 'vue-simple-calendar/static/css/default.css';
-import 'vue-simple-calendar/static/css/holidays-us.css';
 
 export default {
   data: function() {
     return {
-      showDate: new Date(),
-      events: [
-        {
-          id: 1,
-          startDate: (new Date()).setDate((new Date()).getDate() - 1),
-          title: 'Build 21',
-          classes: 'past'
-        },
-        {
-          id: 2,
-          startDate: (new Date()).setDate((new Date()).getDate()),
-          title: 'Build 22',
-          classes: 'locked'
-        },
-        {
-          id: 3,
-          startDate: (new Date()).setDate((new Date()).getDate() + 1),
-          title: 'Build 23',
-          classes: 'normal'
-        },
-        {
-          id: 4,
-          startDate: (new Date()).setDate((new Date()).getDate() + 3),
-          title: 'Build 24',
-          classes: 'normal'
-        },
-        {
-          id: 5,
-          startDate: (new Date()).setDate((new Date()).getDate() + 5),
-          title: 'Build 25',
-          classes: 'signedup'
-        },
-      ]
+      showDate: new Date()
     }
   },
   components: {
     CalendarView,
     CalendarViewHeader
+  },
+  computed: {
+    events: function() {
+      return this.$store.state.events;
+    }
   },
   methods: {
     setShowDate: function(date) {
@@ -72,7 +43,7 @@ export default {
     },
     clickDate: function(date) {},
     clickEvent: function(event) {
-      this.$store.commit('modal');
+      this.$store.commit('modal', event.id);
     },
     convert: function(props) {
       props.previousYear = false;
@@ -84,6 +55,9 @@ export default {
 </script>
 
 <style>
+@import 'vue-simple-calendar/static/css/default.css';
+@import 'vue-simple-calendar/static/css/holidays-us.css';
+
 .calendar {
   position: absolute;
   width: calc(100vw - 40px);
@@ -114,5 +88,33 @@ export default {
   .cv-header-nav button {
     width: calc(100% - 10px);
   }
+}
+
+.cv-event {
+  cursor: pointer;
+}
+
+.unregistered {
+  background-color: #e7e7ff !important;
+  color: #8895A7 !important;
+  border-color: #e0e0f0 !important;
+}
+
+.registered {
+  background-color: #a4e49a !important;
+  color: #44bd32 !important;
+  border-color: #80da72 !important;
+}
+
+.locked {
+  background-color: #e7e7ff !important;
+  color: #8895A7 !important;
+  border-color: #e0e0f0 !important;
+  filter: brightness(80%);
+}
+
+.over {
+  cursor: not-allowed;
+  filter: brightness(60%);
 }
 </style>
