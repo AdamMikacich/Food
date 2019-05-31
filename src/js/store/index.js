@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 /**
- * The Vuex store maintains the state of the application and is used throughout different components
+ * The Vuex store maintains the state of the application and is used throughout different components.
  * The state can only be changed via mutators. The getters allow for additional calculations on values
  * before returning their state.
  */
@@ -14,7 +14,12 @@ const store = new Vuex.Store({
     modalActive: false,
     modalListActive: false,
     selectedEvent: null,
-    events: []
+    events: [],
+    user: {
+      name: '',
+      gf: false,
+      v: false
+    }
   },
   mutations: {
     modalActive: function(state, value) {
@@ -50,10 +55,15 @@ const store = new Vuex.Store({
       if (difference < 0) value.classes.push('over'); // If the event has passed, signify it's over
       value.classes.push(value.registered ? 'registered' : 'unregistered'); // Signify whether the user is registered or not
       state.events.push(value); // Add the event to the state
+    },
+    setUser: function(state, value) {
+      // Set the user's state
+      state.user = value;
     }
   },
   getters: {
     countGF() {
+      if (store.getters.currentEvent == null) return 0;
       let count = 0;
       for (const attendee of store.getters.currentEvent.attendees) {
         if (attendee.gf) count++;
@@ -61,6 +71,7 @@ const store = new Vuex.Store({
       return count; // The number of gluten free signups in the currently opened event visibly in the modal
     },
     countV() {
+      if (store.getters.currentEvent == null) return 0;
       let count = 0;
       for (const attendee of store.getters.currentEvent.attendees) {
         if (attendee.v) count++;
@@ -114,6 +125,13 @@ function generateDummyData() {
       nextBuildID++;
     }
   }
+
+  // Set user data
+  store.commit('setUser', {
+    name: 'User',
+    gf: true,
+    v: false
+  });
 }
 
 generateDummyData();
