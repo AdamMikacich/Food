@@ -3,6 +3,11 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+/**
+ * The Vuex store maintains the state of the application and is used throughout different components
+ * The state can only be changed via mutators. The getters allow for additional calculations on values
+ * before returning their state.
+ */
 const store = new Vuex.Store({
   strict: true,
   state: {
@@ -13,25 +18,31 @@ const store = new Vuex.Store({
   },
   mutations: {
     modalActive: function(state, value) {
+      // Open or close the modal
       if (value) state.selectedEvent = value;
       state.modalActive = !state.modalActive;
+      if (!state.modalActive) state.modalListActive = false; // Reset the modal for the next time it is opened
     },
     modalListActive: function(state) {
+      // Change the page (info page or list page) in the modal
       state.modalListActive = !state.modalListActive;
     },
     changeRegister: function(state) {
+      // Register or deregister from the current event
       if (state.selectedEvent == null) return;
       const registered = state.events[state.selectedEvent].registered;
       const classes = state.events[state.selectedEvent].classes;
 
+      // Remove registered and unregistered state from the event for the calendar
       const index = classes.indexOf(registered ? 'registered' : 'unregistered');
       if (index !== -1) classes.splice(index, 1);
-      classes.push(!registered ? 'registered' : 'unregistered');
+      classes.push(!registered ? 'registered' : 'unregistered'); // Add the current state to the calendar
 
+      // Set the Vuex state to the new registered status
       state.events[state.selectedEvent].registered = !registered;
-      
     },
     addEvent: function(state, value) {
+      // Add an event to the calendar
       value.id = state.events.length; // Add unique ID for event (events will not be removed)
       value.classes = []; // Add classes key
       const difference = Math.round(((value.startDate - new Date()) / (1000 * 60 * 60 * 24))); // Find difference in days from today
