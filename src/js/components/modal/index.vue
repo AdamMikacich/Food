@@ -1,10 +1,11 @@
 <template>
   <div
     class="modal"
-    :class="{animate: $store.state.view == 0}"
+    :class="{hide: $store.state.view == 0}"
   >
     <Header></Header>
     <Content></Content>
+    <!-- Hide the actions bar if the settings modal is open -->
     <Actions v-if="$store.state.selectedEvent != null"></Actions>
   </div>
 </template>
@@ -14,6 +15,9 @@ import Header from './header.vue';
 import Content from './content/index.vue';
 import Actions from './actions.vue';
 
+/**
+ * The modal consists of a header, content, and action bar from top to bottom
+ */
 export default {
   components: {
     Header,

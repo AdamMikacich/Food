@@ -3,6 +3,7 @@
     class="content"
     :style="{height: $store.state.view == 3 ? 'calc(100% - 100px)' : 'calc(100% - 190px)'}"
   >
+    <!-- Display correct modal depending on view -->
     <Info v-if="$store.state.view === 1"></Info>
     <List v-if="$store.state.view === 2"></List>
     <Settings v-if="$store.state.view === 3"></Settings>
@@ -14,6 +15,9 @@ import Info from './info.vue';
 import List from './list.vue';
 import Settings from './settings.vue';
 
+/**
+ * The content of the modal has the info, list, and setting pages
+ */
 export default {
   components: {
     Info,

@@ -2,6 +2,7 @@
   <div class="info">
     <h2 class="subtitle">Info</h2>
     <ul>
+      <!-- Time of the event -->
       <li>
         <i class="fas fa-clock"></i>
         <div>
@@ -9,6 +10,7 @@
           <div>{{ $store.getters.currentEvent.time }}</div>
         </div>
       </li>
+      <!-- Type of food and who is bringing it -->
       <li>
         <i class="fas fa-utensils"></i>
         <div>
@@ -16,6 +18,7 @@
           <div>{{ $store.getters.currentEvent.type }}</div>
         </div>
       </li>
+      <!-- Number of attendees -->
       <li>
         <i class="fas fa-user-circle"></i>
         <div>
@@ -24,6 +27,7 @@
           <div><span>{{ $store.getters.countV }}</span> are Vegetarian</div>
         </div>
       </li>
+      <!-- Display whether user is registered for the event or not -->
       <li v-if="$store.getters.currentEvent.registered === true">
         <i class="fas fa-check status success"></i>
         <div>

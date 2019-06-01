@@ -13,6 +13,9 @@ import Nav from './components/nav/index.vue';
 import Calendar from './components/calendar/index.vue';
 import Modal from './components/modal/index.vue';
 
+/**
+ * The app component creates the layout for the three major components
+ */
 export default {
   components: {
     Nav,
@@ -66,7 +69,7 @@ ul {
   font-size: 14px;
 }
 
-.animate {
+.hide {
   transform: scale(0);
   bottom: 0;
   opacity: 0;

@@ -13,11 +13,13 @@
 </template>
 
 <script>
+// boolean of whether the site is open on a phone or not
 const isMobile = /iphone|ipod|ipad|android|blackberry|opera mini|opera mobi|skyfire|maemo|windows phone|palm|iemobile|symbian|symbianos|fennec/i.test(navigator.userAgent.toLowerCase());
 
 export default {
   methods: {
     settings: function() {
+      // Open to the setting modal
       this.$store.commit('view', {view: 3});
     }
   },

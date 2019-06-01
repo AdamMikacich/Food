@@ -1,19 +1,21 @@
 <template>
   <div class="header">
     <h1 class="title">
+      <!-- Change the naming of the header depending whether the settings or event modal is open -->
       {{ $store.state.selectedEvent == undefined ? 'User' : 'Build' }}
       <span id="buildNum">
         {{ $store.state.selectedEvent == undefined ? 'Settings' : $store.getters.currentEvent.buildNum }}
       </span>
     </h1>
-    <i class="fas fa-times" @click="view" style="cursor: pointer;"></i>
+    <i class="fas fa-times" @click="close" style="cursor: pointer;"></i>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    view: function() {
+    close: function() {
+      // Close to the modal and open the calendar
       this.$store.commit('view', {view: 0});
     }
   }

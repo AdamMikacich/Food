@@ -2,6 +2,7 @@
   <div class="list">
     <h2 class="subtitle">Attendees</h2>
     <ul id="attendees">
+      <!-- Create a list element for each user and display whether they are gluten free, vegan, both, or neither -->
       <li v-for="(attendee, index) in $store.getters.currentEvent.attendees" :key="'attendee' + index">
         {{ attendee.name }}
         <span class="blue">

@@ -1,5 +1,5 @@
 <template>
-  <div class="calendar" :class="{animate: $store.state.view != 0}">
+  <div class="calendar" :class="{hide: $store.state.view != 0}">
 		<calendar-view
 			:show-date="showDate"
       :events="events"
@@ -25,7 +25,7 @@ import CalendarViewHeader from './calendar-view-header';
 export default {
   data: function() {
     return {
-      showDate: new Date()
+      showDate: new Date() // Open the calendar on today's date
     }
   },
   components: {
@@ -34,18 +34,22 @@ export default {
   },
   computed: {
     events: function() {
+      // Get the events from the vuex store
       return this.$store.state.events;
     }
   },
   methods: {
     setShowDate: function(date) {
+      // Change the date
       this.showDate = date;
     },
     clickDate: function(date) {},
     clickEvent: function(event) {
+      // Open to the event modal with the selected event
       this.$store.commit('view', {event: event.id, view: 1});
     },
     convert: function(props) {
+      // Change wording of properties
       props.previousYear = false;
       props.currentPeriodLabel = 'Jump to Today';
       return props;
