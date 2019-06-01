@@ -1,5 +1,5 @@
 <template>
-  <div class="calendar" :class="{animate: $store.state.modalActive}">
+  <div class="calendar" :class="{animate: $store.state.view != 0}">
 		<calendar-view
 			:show-date="showDate"
       :events="events"
@@ -43,7 +43,7 @@ export default {
     },
     clickDate: function(date) {},
     clickEvent: function(event) {
-      this.$store.commit('modalActive', event.id);
+      this.$store.commit('view', {event: event.id, view: 1});
     },
     convert: function(props) {
       props.previousYear = false;

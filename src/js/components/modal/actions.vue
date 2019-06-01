@@ -1,6 +1,6 @@
 <template>
   <div class="actions">
-    <button class="btn" id="view" @click="view">{{ $store.state.modalListActive ? 'View Info' : 'View List'}}</button>
+    <button class="btn" id="view" @click="view">{{ $store.state.view == 1 ? 'View List' : 'View Info'}}</button>
     <button class="btn" id="register" @click="register">{{ $store.getters.currentEvent.registered ? 'Deregister' : 'Register'}}</button>
   </div>
 </template>
@@ -9,7 +9,7 @@
 export default {
   methods: {
     view: function() {
-      this.$store.commit('modalListActive');
+      this.$store.commit('view', {view: this.$store.state.view == 1 ? 2 : 1});
     },
     register: function() {
       this.$store.commit('changeRegister');

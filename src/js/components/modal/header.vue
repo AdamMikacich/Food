@@ -1,15 +1,20 @@
 <template>
   <div class="header">
-    <h1 class="title">Build<span id="buildNum">{{ $store.getters.currentEvent.buildNum }}</span></h1>
-    <i class="fas fa-times" @click="modalActive" style="cursor: pointer;"></i>
+    <h1 class="title">
+      {{ $store.state.selectedEvent == undefined ? 'User' : 'Build' }}
+      <span id="buildNum">
+        {{ $store.state.selectedEvent == undefined ? 'Settings' : $store.getters.currentEvent.buildNum }}
+      </span>
+    </h1>
+    <i class="fas fa-times" @click="view" style="cursor: pointer;"></i>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    modalActive: function() {
-      this.$store.commit('modalActive');
+    view: function() {
+      this.$store.commit('view', {view: 0});
     }
   }
 };

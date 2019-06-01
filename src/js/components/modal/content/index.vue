@@ -1,18 +1,24 @@
 <template>
-  <div class="content">
-    <Info v-if="$store.state.modalListActive === false"></Info>
-    <List v-if="$store.state.modalListActive === true"></List>
+  <div
+    class="content"
+    :style="{height: $store.state.view == 3 ? 'calc(100% - 100px)' : 'calc(100% - 190px)'}"
+  >
+    <Info v-if="$store.state.view === 1"></Info>
+    <List v-if="$store.state.view === 2"></List>
+    <Settings v-if="$store.state.view === 3"></Settings>
   </div>
 </template>
 
 <script>
 import Info from './info.vue';
 import List from './list.vue';
+import Settings from './settings.vue';
 
 export default {
   components: {
     Info,
-    List
+    List,
+    Settings
   }
 };
 </script>
@@ -20,7 +26,6 @@ export default {
 <style>
 .content {
   margin: 0 20px;
-  height: calc(100% - 190px);
   box-sizing: border-box;
   overflow: auto;
   opacity: 1;

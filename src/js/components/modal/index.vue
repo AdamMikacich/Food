@@ -1,13 +1,11 @@
 <template>
   <div
     class="modal"
-    :class="{animate: !$store.state.modalActive}"
+    :class="{animate: $store.state.view == 0}"
   >
-    <div v-if="$store.state.selectedEvent != null">
-      <Header></Header>
-      <Content></Content>
-      <Actions></Actions>
-    </div>
+    <Header></Header>
+    <Content></Content>
+    <Actions v-if="$store.state.selectedEvent != null"></Actions>
   </div>
 </template>
 

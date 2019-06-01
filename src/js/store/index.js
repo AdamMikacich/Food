@@ -11,8 +11,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   strict: true,
   state: {
-    modalActive: false,
-    modalListActive: false,
+    view: 0, // 0 = Calendar, 1 = Info in Modal, 2 = List in Modal, 3 = Settings in Modal
     selectedEvent: null,
     events: [],
     user: {
@@ -22,15 +21,11 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
-    modalActive: function(state, value) {
+    view: function(state, value) {
       // Open or close the modal
-      if (value) state.selectedEvent = value;
-      state.modalActive = !state.modalActive;
-      if (!state.modalActive) state.modalListActive = false; // Reset the modal for the next time it is opened
-    },
-    modalListActive: function(state) {
-      // Change the page (info page or list page) in the modal
-      state.modalListActive = !state.modalListActive;
+      if (value.event != undefined) state.selectedEvent = value.event;
+      if (value.view == 3) state.selectedEvent = null; // Remove event when settings modal is open
+      state.view = value.view;
     },
     changeRegister: function(state) {
       // Register or deregister from the current event
@@ -59,6 +54,9 @@ const store = new Vuex.Store({
     setUser: function(state, value) {
       // Set the user's state
       state.user = value;
+    },
+    updateUser: function(state, value) {
+      state.user[value.key] = value.active;
     }
   },
   getters: {
