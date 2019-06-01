@@ -1,5 +1,5 @@
 # Food
-A Food signups manager for Team 254 built from scratch.
+A food signups manager for Team 254 built from scratch.
 
 ### Install
 - Clone the repository
